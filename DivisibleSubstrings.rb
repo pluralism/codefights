@@ -1,13 +1,6 @@
-require 'benchmark'
-
-
-puts Benchmark.measure {
-  s = "00"
-  #for i in 0...21000
-    #s << "2"
-  #end
-
+def DivisibleSubstrings(s)
   dp = Hash.new
+  dp[0] = 0
   dp[1] = 0
   dp[2] = 0
   dp[3] = 0
@@ -23,6 +16,10 @@ puts Benchmark.measure {
 
   found9 = Array.new(9, 0)
   last_found9 = Array.new(9, 0)
+
+  found7 = Array.new(7, 0)
+  last_found7 = Array.new(7, 0)
+  digits7 = [0,3,6,2,5,1,4]
 
 
   for i in 0...s.length
@@ -51,15 +48,31 @@ puts Benchmark.measure {
       dp[4] += i if s[i - 1..i].to_i % 4 == 0
     end
 
+    # For 5
+    dp[5] += i + 1 if s[i].to_i % 5 == 0
+
+
+    # For 7
+    tmp = s[i].to_i % 7
+    found7[0] = last_found7[-tmp % 7]
+    found7[1] = last_found7[(5 - tmp) % 7]
+    found7[2] = last_found7[(3 - tmp) % 7]
+    found7[3] = last_found7[(1 - tmp) % 7]
+    found7[4] = last_found7[(6 - tmp) % 7]
+    found7[5] = last_found7[(4 - tmp) % 7]
+    found7[6] = last_found7[(2 - tmp) % 7]
+    found7[digits7[tmp]] += 1
+
+    dp[7] += found7[0]
+    found7, last_found7 = last_found7, found7
+
+
     # For 8
     dp[8] += 1 if s[i].to_i % 8 == 0
     if i > 0
       dp[8] += 1 if s[i - 1..i].to_i % 8 == 0
-      dp[8] += i if i > 1 and s[i - 2..i].to_i % 8 == 0
+      dp[8] += i - 1 if i > 1 and s[i - 2..i].to_i % 8 == 0
     end
-
-    # For 5
-    dp[5] += i + 1 if s[i].to_i % 5 == 0
 
 
     # For 9
@@ -77,16 +90,5 @@ puts Benchmark.measure {
     dp[9] += found9[0]
     found9, last_found9 = last_found9, found9
   end
-
-
-  puts "0: 0"
-  puts "1: #{dp[1]}"
-  puts "2: #{dp[2]}"
-  puts "3: #{dp[3]}"
-  puts "4: #{dp[4]}"
-  puts "5: #{dp[5]}"
-  puts "6: #{dp[6]}"
-  puts "7: #{dp[7]}"
-  puts "8: #{dp[8]}"
-  puts "9: #{dp[9]}"
-}
+  dp.values
+end
