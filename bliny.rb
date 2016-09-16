@@ -1,8 +1,12 @@
-def bliny(order)
-
+def bliny o
+    s, m = [], o[0]
+    1.upto(m) { |n| s << n }
+    o.each { |x|
+        (m + 1).upto(x) { |n| s << n } if s.last != x
+        if s.last == x
+            m = [x, m].max
+            s.pop
+        end   
+    }
+    s.empty?
 end
-
-
-# For [2, 1, 3]
-# If we choose 2 then it must already have the number 1 (2 - 1)
-bliny([2, 1, 3])
