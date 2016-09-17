@@ -17,7 +17,7 @@ defmodule Bliny do
   def eval_diff(list, m, x) do
     if List.last(list) != x do
       {list ++ ((m + 1)..x |> Enum.to_list), m}
-    elsecle
+    else
       {list, m}
     end
   end
