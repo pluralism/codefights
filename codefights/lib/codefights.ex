@@ -1,0 +1,2 @@
+defmodule Codefights do
+end
