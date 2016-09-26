@@ -1,6 +1,7 @@
 defmodule Codefights.Mixfile do
   use Mix.Project
 
+
   def project do
     [app: :codefights,
      version: "0.1.0",
