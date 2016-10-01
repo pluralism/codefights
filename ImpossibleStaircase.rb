@@ -1,13 +1,58 @@
-def next_nodes(node, staircase)
+def adjacentNodes(staircase, current_node, visited)
   nodes = []
-  # Below
-  nodes << [node[0] + 1, node[1]] if node[0] + 1 < staircase.length
+
+  # Down
+  if current_node[0] + 1 < staircase.length
+    # Check if the node below is a "v"
+    if staircase[current_node[0] + 1][current_node[1]] == "v"
+      nodes << [current_node[0] + 2, current_node[1], -1]
+    end
+
+    # Check if the node below is a "^"
+    if staircase[current_node[0] + 1][current_node[1]] == "^"
+      nodes << [current_node[0] + 2, current_node[1], 1]
+    end
+  end
+
   # Up
-  nodes << [node[0] - 1, node[1]] if node[0] - 1 >= 0
+  if current_node[0] - 1 > 0
+    # Check if the node above is a "v"
+    if staircase[current_node[0] - 1][current_node[1]] == "v"
+      nodes << [current_node[0] - 2, current_node[1], 1]
+    end
+
+    # Check if the node above is a "^"
+    if staircase[current_node[0] - 1][current_node[1]] == "^"
+      nodes << [current_node[0] - 2, current_node[1], -1]
+    end
+  end
+
   # Left
-  nodes << [node[0], node[1] - 1] if node[1] - 1 >= 0
+  if current_node[1] - 1 > 0
+    # Check if the node to the left is a "<"
+    if staircase[current_node[0]][current_node[1] - 1] == "<"
+      nodes << [current_node[0], current_node[1] - 2, -1]
+    end
+
+    # Check if the node to the left is a ">"
+    if staircase[current_node[0]][current_node[1] - 1] == ">"
+      nodes << [current_node[0], current_node[1] - 2, 1]
+    end
+  end
+
   # Right
-  nodes << [node[0], node[1] + 1] if node[1] + 1 < staircase[0].length
+  if current_node[1] + 1 < staircase[0].length
+    # Check if the node to the right is a "<"
+    if staircase[current_node[0]][current_node[1] + 1] == "<"
+      nodes << [current_node[0], current_node[1] + 2, 1]
+    end
+
+    # Check if the node to the right is a ">"
+    if staircase[current_node[0]][current_node[1] + 1] == ">"
+      nodes << [current_node[0], current_node[1] + 2, -1]
+    end
+  end
+
   nodes
 end
 
@@ -18,42 +63,27 @@ def ImpossibleStaircase(staircase)
   new_staircase = []
   staircase.each do |n| new_staircase << n.chars end
   start_node, queue = [], []
-
   new_staircase.each_index { |i| j = new_staircase[i].index '#'; start_node = [i, j]; break }
   visited[start_node[0]][start_node[1]] = true
   queue << start_node
 
-  current_node = queue.pop
-  nodes = next_nodes(current_node, staircase)
-  nodes.each do |node|
-    next if staircase[node[0]][node[1]] == ' '
-    val = staircase[node[0]][node[1]]
-    if val == 'v'
-      height[node[0] + 1][node[1]] = height[node[0] - 1][node[1]] - 1
-    elsif val == '<'
-      height[node[0]][node[1] + 1] = height[node[0]][node[1] - 1] + 1
-    elsif val == '>'
-      height[node[0]][node[1] + 1] = height[node[0]][node[1] - 1] - 1
+  while !queue.empty?
+    current_node = queue.shift
+    adjs = adjacentNodes(staircase, current_node, visited)
+
+    adjs.each do |node|
+      if !visited[node[0]][node[1]]
+        # Mark the node as visited
+        visited[node[0]][node[1]] = true
+        # Update the height of the node
+        height[node[0]][node[1]] = height[current_node[0]][current_node[1]] + node[2]
+        # Add the node to the queue (only the second and third final -> I and J coordinates)
+        queue << [node[0], node[1]]
+      else
+        return true if height[current_node[0]][current_node[1]] + node[2] != height[node[0]][node[1]]
+      end
     end
-    visited[node[0]][node[1]] = true
-    queue << [node[0], node[1]]
-    p queue
   end
 
-
-  visited.each do |n|
-    p n
-    puts
-  end
-  #while !queue.empty?
-  #end
+  false
 end
-
-
-staircase = ["#  ",
-             "v  ",
-             "#<#",
-             "v v",
-             "#>#"]
-
-ImpossibleStaircase(staircase)
