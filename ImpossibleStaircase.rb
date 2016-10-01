@@ -77,7 +77,7 @@ def ImpossibleStaircase(staircase)
         visited[node[0]][node[1]] = true
         # Update the height of the node
         height[node[0]][node[1]] = height[current_node[0]][current_node[1]] + node[2]
-        # Add the node to the queue (only the second and third final -> I and J coordinates)
+        # Add the node to the queue (only the first and second -> I and J coordinates)
         queue << [node[0], node[1]]
       else
         return true if height[current_node[0]][current_node[1]] + node[2] != height[node[0]][node[1]]
