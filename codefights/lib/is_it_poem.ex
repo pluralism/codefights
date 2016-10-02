@@ -1,4 +1,7 @@
 defmodule IsItPoem do
+  @moduledoc false
+
+  @spec isItPoem([Integer, ...], [String.t, ...]) :: boolean
   def isItPoem(rhyme, text) do
     Enum.map(Enum.chunk(text, length rhyme), fn chunk ->
       rhyme_zip = Enum.zip rhyme, chunk
