@@ -8,6 +8,9 @@ This repository stores a set of solutions for CodeFights challenges, written in 
 ## Challenges solved
 
 * [Chain Names](https://codefights.com/challenge/ZnCxyiiniAywSueqc/main) - [Code](https://github.com/pluralism/codefights/blob/master/codefights/lib/chain_names.ex) (Passing in 100% of the tests)
+* [IsItPoem](https://codefights.com/challenge/kEidRSEGFw86GhRsu/main) - [Code](https://github.com/pluralism/codefights/blob/master/codefights/lib/is_it_poem.ex) (Passing in 100% of the tests)
+
+
 
 ## Installation
 
