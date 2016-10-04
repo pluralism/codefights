@@ -9,6 +9,7 @@ This repository stores a set of solutions for CodeFights challenges, written in 
 
 * [Chain Names](https://codefights.com/challenge/ZnCxyiiniAywSueqc/main) - [Code](https://github.com/pluralism/codefights/blob/master/codefights/lib/chain_names.ex) (Passing in 100% of the tests)
 * [IsItPoem](https://codefights.com/challenge/kEidRSEGFw86GhRsu/main) - [Code](https://github.com/pluralism/codefights/blob/master/codefights/lib/is_it_poem.ex) (Passing in 100% of the tests)
+* [DNA Sequence](https://codefights.com/challenge/fYqpnHtuii9QwwTSt/main) - [Code](https://github.com/pluralism/codefights/blob/master/codefights/lib/dna_sequence.ex) (Passing in 100% of the tests)
 
 
 
