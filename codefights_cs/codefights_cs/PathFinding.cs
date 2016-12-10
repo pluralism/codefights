@@ -31,19 +31,30 @@ namespace codefights_cs
                     edgesDict.Add(edge[0], new List<int>());
             }
 
+
             /**
              * Create the connections between the vertexes
              * 
-             * Each source vertex can be conneced to a list of target vertexes
+             * Each source vertex can be connected to a list of target vertexes
              */
             foreach (int[] edge in edges)
                 edgesDict[edge[0]].Add(edge[1]);
+
+            
+            /**
+             * This dictionary contains all the distances from the start node
+             * to all other nodes
+            */
+            Dictionary<int, int> distFromStart = BFS(edgesDict: edgesDict, start: start);
+
+            foreach(int key in distFromStart.Keys)
+                Console.WriteLine(key);
 
             return -1;
         }
 
 
-        public void BFS(int start, Dictionary<int, List<int>> edgesDict)
+        public Dictionary<int, int> BFS(int start, Dictionary<int, List<int>> edgesDict)
         {
             /**
              * Each element in the Queue Q is composed by 
@@ -71,9 +82,6 @@ namespace codefights_cs
                 if (discovered.Contains(current.Item1))
                     continue;
 
-                // The vertex was not discovered yet, add it to the discovered vertexes
-                discovered.Add(current.Item1);
-
                 /**
                  * Add the information that represents the cost from reaching the
                  * current Node from the start node
@@ -81,7 +89,25 @@ namespace codefights_cs
                  * The key is the node and the value is the cost
                  */
                 costs.Add(current.Item1, current.Item2);
+
+                // The vertex was not discovered yet, add it to the discovered vertexes
+                discovered.Add(current.Item1);
+
+                // Iterate over all the adjacent vertexes...
+                foreach(int n in edgesDict[current.Item1])
+                {
+                    /**
+                     * If the vertex v was not still discovered insert a 
+                     * new tuple in the queue. The cost associated with the new vertex
+                     * is the cost of the current vertex + 1 (one level deeper in the tree)
+                     */
+                    if (!discovered.Contains(n))
+                        Q.Enqueue(Tuple.Create(n, current.Item2 + 1));
+                }
             }
+
+
+            return costs;
         }
     }
 }

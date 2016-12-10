@@ -12,6 +12,11 @@ namespace codefights_cs
         {
             int[][] edges = new int[][]
             {
+                new int[] { 0, 1 },
+                new int[] { 0, 3 },
+                new int[] { 1, 2 },
+                new int[] { 2, 3 },
+
                 new int[] { 2, 5 },
                 new int[] { 3, 4 },
                 new int[] { 4, 7 },
@@ -24,7 +29,7 @@ namespace codefights_cs
 
                 new int[] { 8, 25 },
                 new int[] { 9, 10 },
-                new int[] { 14, 13 },
+                new int[] { 10, 11 },
                 new int[] { 11, 12 },
 
                 new int[] { 12, 13 },
