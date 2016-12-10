@@ -12,7 +12,7 @@ namespace codefights_cs
         {
             int[][] edges = new int[][]
             {
-                new int[] { 0, 1 },
+                /*new int[] { 0, 1 },
                 new int[] { 0, 3 },
                 new int[] { 1, 2 },
                 new int[] { 2, 3 },
@@ -57,14 +57,24 @@ namespace codefights_cs
                 new int[] { 24, 20 },
                 new int[] { 25, 6 },
 
-                new int[] { 27, 16 }
+                new int[] { 27, 16 }*/
+
+
+
+                new int[] { 0, 1 },
+
+                new int[] { 0, 2 },
+                new int[] { 1, 2 },
+                new int[] { 1, 3 },
+                new int[] { 2, 3 },
+                new int[] { 3, 1 },
             };
 
-            int[] markedNodes = new int[] { 25, 27, 5 };
+            int[] markedNodes = new int[] { 2, 3 };
 
 
             PathFinding pf = new PathFinding();
-            pf.pathfinding(0, edges, markedNodes);
+            Console.WriteLine(pf.pathfinding(0, edges, markedNodes));
             Console.ReadLine();
         }
     }
