@@ -7,20 +7,20 @@ using System.Threading.Tasks;
 
 namespace codefights_cs
 {
-    class PathFinding
+    public class PathFinding
     {
-        static int currentBest = Int32.MaxValue;
+        public static int currentBest = Int32.MaxValue;
 
         /*
          * Given a graph as a list of its edges, your task is to find the shortest path that starts at a start 
          * and visits each of the markedNodes exactly once. 
          * If it's impossible to do this, return -1 instead.
          */
-        public int pathfinding(int start, int[][] edges, int[] markedNodes)
+        public static int pathfinding(int start, int[][] edges, int[] markedNodes)
         {
             // Remove the start node from the markedNodes array
             markedNodes = markedNodes.Where(n => n != start).ToArray();
-
+                
             // Create a Dictionary for faster edge lookup
             Dictionary<int, List<int>> edgesDict = new Dictionary<int, List<int>>();
 
@@ -83,7 +83,7 @@ namespace codefights_cs
         // Node is the current node that is being analyzed
         // nodesDict is the list of all nodes and the respective distances to other nodes
         // startNode is the start node of the program 
-        public void calculateBestCost(Dictionary<int, Dictionary<int, int>> nodesDict, List<int> markedNodes, 
+        static void calculateBestCost(Dictionary<int, Dictionary<int, int>> nodesDict, List<int> markedNodes, 
             int node, int currentCost, List<int> visited)
         {
             if (markedNodes.Count == 0)
@@ -117,7 +117,7 @@ namespace codefights_cs
         }
 
 
-        public Dictionary<int, int> BFS(int start, Dictionary<int, List<int>> edgesDict)
+        static Dictionary<int, int> BFS(int start, Dictionary<int, List<int>> edgesDict)
         {
             /**
              * Each element in the Queue Q is composed by 
