@@ -23,6 +23,8 @@ namespace codefights_cs
                 
             // Create a Dictionary for faster edge lookup
             Dictionary<int, List<int>> edgesDict = new Dictionary<int, List<int>>();
+            // Add the start node to the dictionary (sometimes its not present in the edges jagged array)
+            edgesDict.Add(start, new List<int>());
 
             List<int> outVal;
             // Iterate over the list of all edges to create the keys
@@ -79,10 +81,6 @@ namespace codefights_cs
         }
 
 
-        // Calculate all paths from a node 
-        // Node is the current node that is being analyzed
-        // nodesDict is the list of all nodes and the respective distances to other nodes
-        // startNode is the start node of the program 
         static void calculateBestCost(Dictionary<int, Dictionary<int, int>> nodesDict, List<int> markedNodes, 
             int node, int currentCost, List<int> visited)
         {

@@ -143,5 +143,38 @@ namespace codefights_cs.Tests
             int[] markedNodes = new int[] { 12, 2 };
             Assert.AreEqual(11, PathFinding.pathfinding(0, edges, markedNodes));
         }
+
+
+        [TestMethod()]
+        [Timeout(4000)]
+        public void pathfindingTest5()
+        {
+            int[][] edges = new int[][]
+            {
+                new int[] { 0, 1 },
+                new int[] { 1, 2 },
+                new int[] { 2, 0 },
+                new int[] { 2, 3 },
+                new int[] { 3, 0 },
+                new int[] { 3, 4 },
+                new int[] { 4, 0 }
+            };
+
+            int[] markedNodes = new int[] { 4, 0 };
+            Assert.AreEqual(4, PathFinding.pathfinding(0, edges, markedNodes));
+        }
+
+
+        [TestMethod()]
+        [Timeout(4000)]
+        public void pathfindingTest6()
+        {
+            int[][] edges = new int[][]
+            {
+            };
+
+            int[] markedNodes = new int[] { 7 };
+            Assert.AreEqual(0, PathFinding.pathfinding(7, edges, markedNodes));
+        }
     }
 }
