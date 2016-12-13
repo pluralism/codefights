@@ -10,15 +10,7 @@ namespace codefights_cs
     {
         static void Main(string[] args)
         {
-            int[][] edges = new int[][]
-            {
-            };
-
-            int[] markedNodes = new int[] { 7 };
-
-
-            Console.WriteLine(RangeConsecutiveXor.rangeConsecutiveXor(2, 6));
-            Console.ReadLine();
+            Console.WriteLine(RangeConsecutiveXor.rangeConsecutiveXor(3, 4));
         }
     }
 }

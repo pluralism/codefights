@@ -6,19 +6,29 @@ using System.Threading.Tasks;
 
 namespace codefights_cs
 {
-    class RangeConsecutiveXor
+    public class RangeConsecutiveXor
     {
+        /**
+         * Let's consider a sequence X1 = 1, X2 = 1 ^ 2, ..., Xn = 1 ^ ... ^ n, where ^ is a bitwise xor.
+         * Given l and r, find the value of Xl ^ Xl + 1 ^ ... ^ Xr
+         * 
+         * If l = 2 then Xl = X2 = 1 ^ 2 and X(l + 2) = X4 = 1 ^ 2 ^ 3 ^ 4
+         * (1 ^ 2) ^ (1 ^ 2 ^ 3) ^ (1 ^ 2 ^ 3 ^ 4)
+        */
         public static int rangeConsecutiveXor(int l, int r)
         {
             /**
              * Xn = 1 ^ 2 ^ ... ^ n
              * 
              * The sequence appears to be always as follows:
-             *  1, n + 1, 0, n
+             *  n, 2, 2, n + 2, n + 2, 0, 0, n
              */
-            int[] seq = new int[] { 1, r + 1, 0, r };
+            Func<int, int> calculate = i => {
+                int[] seq = new int[] { i, 2, 2, i + 2, i + 2, 0, 0, i };
+                return seq[i > 1 ? (i - 1) % 8 : 0];
+            };
 
-            return seq[(r - 1) % 4];
+            return calculate(l - 1) ^ calculate(r);
         }
     }
 }
