@@ -17,7 +17,7 @@ namespace codefights_cs
             int[] markedNodes = new int[] { 7 };
 
 
-            Console.WriteLine(PathFinding.pathfinding(7, edges, markedNodes));
+            Console.WriteLine(RangeConsecutiveXor.rangeConsecutiveXor(2, 6));
             Console.ReadLine();
         }
     }
