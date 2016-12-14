@@ -54,6 +54,7 @@
     <Compile Include="PathFindingTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RangeConsecutiveXorTests.cs" />
+    <Compile Include="StringMazeTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\codefights_cs\codefights_cs.csproj">

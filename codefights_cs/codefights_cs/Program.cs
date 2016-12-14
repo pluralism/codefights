@@ -10,7 +10,8 @@ namespace codefights_cs
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(RangeConsecutiveXor.rangeConsecutiveXor(3, 4));
+            Console.WriteLine(StringMaze.stringMaze("aced"));
+            Console.ReadLine();
         }
     }
 }
