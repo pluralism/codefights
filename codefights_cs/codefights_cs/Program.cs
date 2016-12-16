@@ -10,7 +10,7 @@ namespace codefights_cs
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(StringMaze.stringMaze("aced"));
+            Console.WriteLine(GroupedBits.groupedBits(1259));
             Console.ReadLine();
         }
     }
