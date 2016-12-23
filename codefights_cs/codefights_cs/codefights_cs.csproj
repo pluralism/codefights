@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BitWork.cs" />
+    <Compile Include="FriendGroups.cs" />
     <Compile Include="GroupedBits.cs" />
     <Compile Include="PathFinding.cs" />
     <Compile Include="Program.cs" />
