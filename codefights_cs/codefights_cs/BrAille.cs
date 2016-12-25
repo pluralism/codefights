@@ -8,10 +8,27 @@ namespace codefights_cs
 {
     public class BrAille
     {
+        public static bool isEmpty(string[] message, int index)
+        {
+            for (int i = 0; i < 3; i++)
+                for (int j = 0; j < 3; j++)
+                    if (message[i][j] != 32)
+                        return false;
+            return true;
+        }
+
+
+        public static bool isValid(string[] message, int index)
+        {
+            if (message[0][index + 1] == 32 && message[1][index + 1] == 32 && message[2][index + 1] == 32)
+                return true;
+            return false;
+        }
+
         public static string brAIlle(string[] message)
         {
             string invalid = "[?]", result = "";
-            int messageLen;
+            int messageLen, i, longest;
             int[] alphabet = { 1, 12, 14, 145, 15, 124, 1245, 125, 24, 245, 13, 123, 134, 1345, 135, 1234, 12345,
                 1235, 234, 2345, 136, 1236, 2456, 1346, 13456, 1356 };
 
@@ -19,6 +36,27 @@ namespace codefights_cs
             // If message has less than three lines, it cannot be decrypted and [?] should be returned.
             if (messageLen < 3)
                 return invalid;
+
+            /**
+             * If message has more than three lines, the exceeding lines should be added to the first three lines 
+             * one by one: the first exceeding line should be added to message[0], the next one should be added 
+             * to message[1], the following line should be added to message[2], and the next should be added to 
+             * message[0] again. The process should continue until message contains exactly three lines.
+             */
+            for (i = 3; i < messageLen; i++)
+                message[i % 3] += message[i];
+
+            // Find the longest message
+            longest = message.Max(m => m.Length);
+            message = message.Take(3).Select(m => m.PadRight(longest)).ToArray();
+
+            for (i = 0; i < longest; i += 4)
+            {
+                if (isValid(message, i))
+                    Console.WriteLine("valid");
+                else
+                    Console.WriteLine("invalid");
+            }
 
             return "";
         }
