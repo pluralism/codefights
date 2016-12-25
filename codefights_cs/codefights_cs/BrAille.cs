@@ -25,6 +25,21 @@ namespace codefights_cs
             return false;
         }
 
+
+        public static int convertToNumber(string[] message, int index)
+        {
+            int total = 0, count = 0, currentNumber = 6;
+
+            for(int j = index + 2; j >= index; j -= 2)
+                for(int k = 2; k >= 0; k--)
+                {
+                    if(message[k][j] == '#')
+                        total += (int) Math.Pow(10, count++) * currentNumber;
+                    currentNumber--;
+                }
+            return total;
+        }
+
         public static string brAIlle(string[] message)
         {
             string invalid = "[?]", result = "";
@@ -52,10 +67,11 @@ namespace codefights_cs
 
             for (i = 0; i < longest; i += 4)
             {
-                if (isValid(message, i))
-                    Console.WriteLine("valid");
-                else
-                    Console.WriteLine("invalid");
+                int tmpNumber = convertToNumber(message, i);
+                if(alphabet.Contains(tmpNumber))
+                {
+                    Console.WriteLine((char)(Array.IndexOf(alphabet, tmpNumber) + 97));
+                }
             }
 
             return "";
