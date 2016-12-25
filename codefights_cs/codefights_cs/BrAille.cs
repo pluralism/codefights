@@ -8,10 +8,13 @@ namespace codefights_cs
 {
     public class BrAille
     {
+        public static int[] alphabet = { 1, 12, 14, 145, 15, 124, 1245, 125, 24, 245, 13, 123, 134, 1345, 135, 1234, 12345,
+                1235, 234, 2345, 136, 1236, 2456, 1346, 13456, 1356, 3456 };
+
         public static bool isEmpty(string[] message, int index)
         {
             for (int i = 0; i < 3; i++)
-                for (int j = 0; j < 3; j++)
+                for (int j = index; j < index + 3; j++)
                     if (message[i][j] != 32)
                         return false;
             return true;
@@ -20,7 +23,8 @@ namespace codefights_cs
 
         public static bool isValid(string[] message, int index)
         {
-            if (message[0][index + 1] == 32 && message[1][index + 1] == 32 && message[2][index + 1] == 32)
+            if (message[0][index + 1] == 32 && message[1][index + 1] == 32 && message[2][index + 1] == 32
+                && alphabet.Contains(convertToNumber(message, index)))
                 return true;
             return false;
         }
@@ -44,37 +48,70 @@ namespace codefights_cs
         {
             string invalid = "[?]", result = "";
             int messageLen, i, longest;
-            int[] alphabet = { 1, 12, 14, 145, 15, 124, 1245, 125, 24, 245, 13, 123, 134, 1345, 135, 1234, 12345,
-                1235, 234, 2345, 136, 1236, 2456, 1346, 13456, 1356 };
+            bool numberMode = false;
 
             messageLen = message.Length;
-            // If message has less than three lines, it cannot be decrypted and [?] should be returned.
             if (messageLen < 3)
                 return invalid;
 
-            /**
-             * If message has more than three lines, the exceeding lines should be added to the first three lines 
-             * one by one: the first exceeding line should be added to message[0], the next one should be added 
-             * to message[1], the following line should be added to message[2], and the next should be added to 
-             * message[0] again. The process should continue until message contains exactly three lines.
-             */
             for (i = 3; i < messageLen; i++)
                 message[i % 3] += message[i];
 
-            // Find the longest message
             longest = message.Max(m => m.Length);
             message = message.Take(3).Select(m => m.PadRight(longest)).ToArray();
 
+
             for (i = 0; i < longest; i += 4)
             {
-                int tmpNumber = convertToNumber(message, i);
-                if(alphabet.Contains(tmpNumber))
+                if (!isValid(message, i))
+                    result += invalid;
+                else
                 {
-                    Console.WriteLine((char)(Array.IndexOf(alphabet, tmpNumber) + 97));
+                    if (i > 0 &&
+                        (message[0][i - 1] == '#' || message[1][i - 1] == '#' || message[2][i - 1] == '#'))
+                    {
+                        if (result[result.Length - 1] == ']')
+                            continue;
+                        else
+                        {
+                            result = result.Remove(result.Length - 1, 1) + invalid;
+                            continue;
+                        }
+                    }
+
+                    int tmpNumber = convertToNumber(message, i);
+                    if (tmpNumber == 0)
+                    {
+                        result += " ";
+                        continue;
+                    }
+
+                    if (tmpNumber == 3456)
+                    {
+                        numberMode = !numberMode;
+                        if (numberMode) continue;
+                    }
+
+                    if (numberMode)
+                    {
+                        int indexNumber = Array.IndexOf(alphabet, tmpNumber);
+                        if (indexNumber < 10)
+                        {
+                            indexNumber = indexNumber == 9 ? 0 : indexNumber + 1;
+                            result += indexNumber;
+                        }
+                        else
+                        {
+                            if (alphabet.Contains(tmpNumber))
+                                result += (char)(Array.IndexOf(alphabet, tmpNumber) + 97); ;
+                            numberMode = !numberMode;
+                            continue;
+                        }
+                    }
+                    else result += (char)(Array.IndexOf(alphabet, tmpNumber) + 97);
                 }
             }
-
-            return "";
+            return result;
         }
     }
 }
