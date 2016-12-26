@@ -15,6 +15,8 @@ namespace codefights_cs
             //Console.WriteLine(BrAille.brAIlle(new string[] { "  #", "  #   # ", "# #", " # # #  ", "#  ", "        " }));
             //Console.WriteLine(BrAille.brAIlle(new string[] { "# # #   #   # #   ", "  #          #  ", "#   # # #   # # #           #   ", "# #   #   # #   # #     #     #", "# # # ##", "# #                 #  ", "   # #", "  #       #     # #    #    #  " }));
             //Console.WriteLine(BrAille.brAIlle(new string[] { "#", "### ", "###  ", "##", "#   #       ##  ##  #     ", "       ", "   # # # #   ", "#   #   #   # # # ", "# #", "#", "# ", " #   #", " # # # # #   # # # #   #     # #     # #     ", "#   #     #     ##  #     # #     #     #     ", "   #   # #             #", "", "      # # # # #   #", "", "#   #   # #     #     # #   # #       # #   # #   #     # #   ", " # #     # # ", "       # #     #   # # # # # #   #       # # #         #   #             #     #   ", "#   ", "#" }));
+            //Console.WriteLine(BrAille.brAIlle(new string[] { "  # #  ", "# # #   ", "  #    " }));
+            //Console.WriteLine(BrAille.brAIlle(new string[] { "  # # #", "# # # #", "  # # #" }));
             Console.WriteLine(BrAille.brAIlle(new string[] { "#",
  "### ",
  "###  ",
@@ -38,6 +40,15 @@ namespace codefights_cs
  "       # #     #   # # # # # #   #       # # #         #   #             #     #   ",
  "#   ",
  "#" }));
+
+            Console.WriteLine(BrAille.brAIlle(new string[] { "# # #   #   # #   ",
+ "  #          #  ",
+ "#   # # #   # # #           #   ",
+ "# #   #   # #   # #     #     #",
+ "# # # ##",
+ "# #                 #  ",
+ "   # #",
+ "  #       #     # #    #    #  " }));
             Console.ReadLine();
         }
     }

@@ -46,13 +46,13 @@ namespace codefights_cs
 
         public static string brAIlle(string[] message)
         {
-            string invalid = "[?]", result = "";
+            string result = "";
             int messageLen, i, longest;
             bool numberMode = false;
 
             messageLen = message.Length;
             if (messageLen < 3)
-                return invalid;
+                return "[?]";
 
             for (i = 3; i < messageLen; i++)
                 message[i % 3] += message[i];
@@ -60,36 +60,51 @@ namespace codefights_cs
             longest = message.Max(m => m.Length);
             message = message.Take(3).Select(m => m.PadRight(longest)).ToArray();
 
-
             for (i = 0; i < longest; i += 4)
             {
+                if (i + 2 >= longest)
+                {
+                    result += "[?]";
+                    break;
+                }
+
+
                 if (!isValid(message, i))
-                    result += invalid;
+                {
+                    // Empty block
+                    if (isEmpty(message, i))
+                    {
+                        result += ' ';
+                        continue;
+                    }
+
+                    if (result.Length > 0 && result[result.Length - 1] == ']')
+                        continue;
+                    result += "[?]";
+                }
                 else
                 {
                     if (i > 0 &&
                         (message[0][i - 1] == '#' || message[1][i - 1] == '#' || message[2][i - 1] == '#'))
                     {
-                        if (result[result.Length - 1] == ']')
-                            continue;
-                        else
+                        if (result[result.Length - 1] != ']')
                         {
-                            result = result.Remove(result.Length - 1, 1) + invalid;
+                            if (!numberMode)
+                                result = result.Remove(result.Length - 1, 1) + "[?]";
+                            else
+                                result += "[?]";
                             continue;
                         }
-                    }
-
-                    int tmpNumber = convertToNumber(message, i);
-                    if (tmpNumber == 0)
-                    {
-                        result += " ";
                         continue;
                     }
 
+                    int tmpNumber = convertToNumber(message, i);
+
                     if (tmpNumber == 3456)
                     {
-                        numberMode = !numberMode;
-                        if (numberMode) continue;
+                        numberMode ^= true;
+                        if (numberMode)
+                            continue;
                     }
 
                     if (numberMode)
@@ -102,16 +117,14 @@ namespace codefights_cs
                         }
                         else
                         {
-                            if (alphabet.Contains(tmpNumber))
-                                result += (char)(Array.IndexOf(alphabet, tmpNumber) + 97); ;
-                            numberMode = !numberMode;
-                            continue;
+                            result += (char)(Array.IndexOf(alphabet, tmpNumber) + 97); ;
+                            numberMode ^= true;
                         }
                     }
                     else result += (char)(Array.IndexOf(alphabet, tmpNumber) + 97);
                 }
             }
-            return result;
+            return result.Replace(" ", string.Empty);
         }
     }
 }
