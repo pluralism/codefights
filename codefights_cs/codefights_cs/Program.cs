@@ -10,45 +10,9 @@ namespace codefights_cs
     {
         static void Main(string[] args)
         {
-            //Console.WriteLine(BrAille.brAIlle(new string[] { "# # # ", "", "#   #   #  ", "# #  ", "      #   #" }));
-            //Console.WriteLine(BrAille.brAIlle(new string[] { "# # ###   # # #", "    # #   #   #", "    # # # #    " }));
-            //Console.WriteLine(BrAille.brAIlle(new string[] { "  #", "  #   # ", "# #", " # # #  ", "#  ", "        " }));
-            //Console.WriteLine(BrAille.brAIlle(new string[] { "# # #   #   # #   ", "  #          #  ", "#   # # #   # # #           #   ", "# #   #   # #   # #     #     #", "# # # ##", "# #                 #  ", "   # #", "  #       #     # #    #    #  " }));
-            //Console.WriteLine(BrAille.brAIlle(new string[] { "#", "### ", "###  ", "##", "#   #       ##  ##  #     ", "       ", "   # # # #   ", "#   #   #   # # # ", "# #", "#", "# ", " #   #", " # # # # #   # # # #   #     # #     # #     ", "#   #     #     ##  #     # #     #     #     ", "   #   # #             #", "", "      # # # # #   #", "", "#   #   # #     #     # #   # #       # #   # #   #     # #   ", " # #     # # ", "       # #     #   # # # # # #   #       # # #         #   #             #     #   ", "#   ", "#" }));
-            //Console.WriteLine(BrAille.brAIlle(new string[] { "  # #  ", "# # #   ", "  #    " }));
-            //Console.WriteLine(BrAille.brAIlle(new string[] { "  # # #", "# # # #", "  # # #" }));
-            Console.WriteLine(BrAille.brAIlle(new string[] { "#",
- "### ",
- "###  ",
- "##",
- "#   #       ##  ##  #     ",
- "       ",
- "   # # # #   ",
- "#   #   #   # # # ",
- "# #",
- "#",
- "# ",
- " #   #",
- " # # # # #   # # # #   #     # #     # #     ",
- "#   #     #     ##  #     # #     #     #     ",
- "   #   # #             #",
- "",
- "      # # # # #   #",
- "",
- "#   #   # #     #     # #   # #       # #   # #   #     # #   ",
- " # #     # # ",
- "       # #     #   # # # # # #   #       # # #         #   #             #     #   ",
- "#   ",
- "#" }));
-
-            Console.WriteLine(BrAille.brAIlle(new string[] { "# # #   #   # #   ",
- "  #          #  ",
- "#   # # #   # # #           #   ",
- "# #   #   # #   # #     #     #",
- "# # # ##",
- "# #                 #  ",
- "   # #",
- "  #       #     # #    #    #  " }));
+            string[] a = CodeFight.codeFight(35);
+            foreach (string s in a)
+                Console.WriteLine(s);
             Console.ReadLine();
         }
     }
