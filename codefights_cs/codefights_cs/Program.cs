@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace codefights_cs
 {
@@ -10,9 +6,9 @@ namespace codefights_cs
     {
         static void Main(string[] args)
         {
-            string[] a = CodeFight.codeFight(35);
-            foreach (string s in a)
-                Console.WriteLine(s);
+            ISBN13 i = new ISBN13();
+            Console.WriteLine(i.isbn13("150-114-206")[0]);
+            Console.WriteLine(i.isbn13("150-114-206")[1]);
             Console.ReadLine();
         }
     }
