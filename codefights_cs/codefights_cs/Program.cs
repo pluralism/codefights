@@ -6,9 +6,8 @@ namespace codefights_cs
     {
         static void Main(string[] args)
         {
-            ISBN13 i = new ISBN13();
-            Console.WriteLine(i.isbn13("150-114-206")[0]);
-            Console.WriteLine(i.isbn13("150-114-206")[1]);
+            // H3Cl2Br3I2
+            Console.WriteLine(PossibleRing.possibleRing("H3Cl2Br3I2"));
             Console.ReadLine();
         }
     }
