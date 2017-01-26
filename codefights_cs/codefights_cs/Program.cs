@@ -6,8 +6,7 @@ namespace codefights_cs
     {
         static void Main(string[] args)
         {
-            // H3Cl2Br3I2
-            Console.WriteLine(PossibleRing.possibleRing("H3Cl2Br3I2"));
+            HolidayBreak.holidayBreak(2021);
             Console.ReadLine();
         }
     }

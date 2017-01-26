@@ -48,6 +48,7 @@
     <Compile Include="CodeFight.cs" />
     <Compile Include="FriendGroups.cs" />
     <Compile Include="GroupedBits.cs" />
+    <Compile Include="HolidayBreak.cs" />
     <Compile Include="ISBN13.cs" />
     <Compile Include="PathFinding.cs" />
     <Compile Include="PossibleRing.cs" />

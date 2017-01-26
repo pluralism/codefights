@@ -52,6 +52,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="BitWorkTests.cs" />
+    <Compile Include="HolidayBreakTests.cs" />
     <Compile Include="PathFindingTests.cs" />
     <Compile Include="PossibleRingTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
