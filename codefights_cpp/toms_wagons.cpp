@@ -10,17 +10,16 @@ using namespace std;
 */
 int toms_wagons(int e, int q, int n) {
   int d[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-  int s = 0, a = q, b = e - 1, c = n;
+  int s = 0, b = e - 1;
 
-  while(c)
+  while(n--)
   {
-    s += 1 + (2 * (a - 1));
-    a += 1;
-    if(a > d[b]) {
+    s += 1 + (2 * (q - 1));
+    q += 1;
+    if(q > d[b]) {
       b = (b + 1) % 12;
-      a = 1;
+      q = 1;
     }
-    c--;
   }
   return s;
 }
